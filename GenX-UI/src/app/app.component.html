@@ -52,7 +52,7 @@
                           <input type="file" class="custom-file-input" id="inputGroupFile04"
                             (change)="populateSourceXlsData($event)">
                           <label class="custom-file-label" for="inputGroupFile04"
-                          [ngStyle]="sourceUploadedFlag ? {'color': 'coral'} : ''">{{sourceUploadLabel}}</label>
+                            [ngStyle]="sourceUploadedFlag ? {'color': 'coral'} : ''">{{sourceUploadLabel}}</label>
                         </div>
                         <div class="input-group-append">
                           <button class="btn btn-primary" type="button" (click)="uploadSourceXls()">Load</button>
@@ -171,7 +171,7 @@
           <div class="col-sm-6">
             <button style="margin-top:-450px;" class="btn btn-success" (click)="exportToExcel('report1')">Generate
               Report For Test Type 1
-              1</button>
+            </button>
           </div>
           <div class="col-sm-6">
             <button style="margin-top:-450px;" class="btn btn-success" (click)="exportToExcel('report2')">
