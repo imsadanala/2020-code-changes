@@ -1,0 +1,190 @@
+/* USER PROFILE PAGE */
+.card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.card.hovercard .card-background {
+    height: 130px;
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+.card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #262626;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
+
+
+
+
+
+
+
+/* @media screen and (max-width: 480px) {
+   
+}
+
+@media screen and (min-width: 480px) {
+    .admin-tabs{
+        display: none;
+    }
+}
+
+.admin-sidebar{
+    max-width: 18%;
+}
+
+#sidebar-admin{
+    position: relative;
+    height: max-content;
+     width: 118%;
+    background: blue;
+}
+.btn-save{
+    width: 40%;
+    margin-left: 320%;
+    margin-top: 15%;
+}
+.btn-load{
+    margin-left: 27%;
+    margin-top: 5%;
+    border-radius: 30px;
+    width: 50%;
+}
+.label-value {
+    margin-left: 10%;
+    margin-top: 8%;
+    font-size: larger;
+    color: green;
+}
+.admin-sidebar-item{
+    margin-top: 55px;
+    padding: 1em;
+    border-bottom: 1px solid white;
+}
+
+.admin-nav{
+    background: #49C2B3;
+}
+
+.admin-nav-item{
+    color: white;
+    font-weight:bold;
+}
+.btn-add {
+    width: 25%;
+    margin-left: 10%;
+    margin-top: 14%;
+}
+
+.admin-nav-item:hover{
+    color: white;
+    background: #41aea1;
+    
+}
+
+.admin-nav-item.active{
+    background:darkgrey !important;
+    color: white !important;
+}
+
+.admin-header-block{
+   background:green;
+   color: white !important;
+   text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-color: #ddd;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.admin-filter-button{
+    background: #78B404;
+    color: white !important;
+    font-weight: bold;
+}
+
+.admin-user-card{
+    margin-bottom: 10px;
+}
+  
+.rounded-lg {
+    border-radius: 1rem;
+  }
+  
+  .custom-file-label.rounded-pill {
+    border-radius: 50rem;
+  }
+  
+  .custom-file-label.rounded-pill::after {
+    border-radius: 0 50rem 50rem 0;
+  }
+ */
