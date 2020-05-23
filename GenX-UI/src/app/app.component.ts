@@ -20,9 +20,7 @@ export class AppComponent implements OnInit {
   destinationlabel: boolean;
   sourcelabel: boolean;
   columnsLabel: boolean;
-
   file: File;
-  filelist: any[];
   listarr: string[];
   contentvalue = '';
   storevar = '';
@@ -30,7 +28,6 @@ export class AppComponent implements OnInit {
   lastarray: any[];
   headerSrc = '';
   destSrc = '';
-
   displayTable = 'none';
 
   sourceXlsData: any[];
