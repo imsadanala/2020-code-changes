@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { UploadService } from './upload.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as XLSX from 'xlsx';
@@ -10,18 +10,7 @@ import { ExcelData } from './dto/exceldata.dto';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-
-  title = 'Excel';
-
-  constructor(private uploadservice: UploadService) {
-  }
-
-  form = new FormGroup({
-    selecttest: new FormControl('', Validators.required),
-    sourcedropdown: new FormControl('', Validators.required),
-    destinationdropdown: new FormControl('', Validators.required)
-  });
+export class AppComponent implements OnInit {
 
   excelSheet: XLSX.WorkSheet;
   fileName: string;
@@ -31,8 +20,7 @@ export class AppComponent {
   destinationlabel: boolean;
   sourcelabel: boolean;
   columnsLabel: boolean;
-  sourceValue: string;
-  destinationValue: string;
+
   file: File;
   filelist: any[];
   listarr: string[];
@@ -41,8 +29,8 @@ export class AppComponent {
   arrayBuffer: any;
   lastarray: any[];
   headerSrc = '';
-  destSrc = '';  
-  testType = '';
+  destSrc = '';
+
   displayTable = 'none';
 
   sourceXlsData: any[];
@@ -58,7 +46,24 @@ export class AppComponent {
   templateUploadLabel = 'Browse Template XLS file';
   comparedColumnValues: string[] = [];
   templateUploadedFlag: boolean;
-  compareColumnsmap = new Map();
+  compareColumnsmap = new Map<string, number>();
+
+  constructor(private uploadservice: UploadService) {
+  }
+
+  ngOnInit() {
+    this.compareColumnsmap.set('Select Test Type', 0);
+    this.compareColumnsmap.set('Exists in Source', 1);
+    this.compareColumnsmap.set('Exists in Destination', 2);
+    this.compareColumnsmap.set('Variance', 3);
+  }
+
+
+  form = new FormGroup({
+    selecttest: new FormControl('', Validators.required),
+    sourcedropdown: new FormControl('', Validators.required),
+    destinationdropdown: new FormControl('', Validators.required)
+  });
 
 
   uploadSourceXls() {
@@ -125,18 +130,24 @@ export class AppComponent {
     this.destinationUploadLabel = this.destFileName + ' uploaded successfully';
   }
 
-  onAdd() {
+  addColumnsCompareData() {
     this.displayTable = 'block';
-    this.testType = this.form.get('selecttest').value;
-    this.destinationValue = this.form.get('destinationdropdown').value;
-    this.sourceValue = this.form.get('sourcedropdown').value;
-    this.dropdownValues.push(this.testType + ":" + this.sourceValue + ":" + this.destinationValue);
-    this.selectedColumnSdata = {
-      testingType: this.testType,
-      sourceColumn: this.sourceValue,
-      destinationColumn: this.destinationValue
-    };
-    this.selectedColumnSdataList.push(this.selectedColumnSdata);
+    let testType = this.form.get('selecttest').value;
+    let destinationValue = this.form.get('destinationdropdown').value;
+    let sourceValue = this.form.get('sourcedropdown').value;
+    if (testType && destinationValue && sourceValue) {
+      testType = this.compareColumnsmap.get(testType);
+      destinationValue = this.compareColumnsmap.get(destinationValue);
+      sourceValue = this.compareColumnsmap.get(sourceValue);
+      this.dropdownValues.push(testType + ':' + sourceValue + ':' + destinationValue);
+      this.selectedColumnSdata = {
+        testingType: testType,
+        sourceColumn: sourceValue,
+        destinationColumn: destinationValue
+      };
+      this.selectedColumnSdataList.push(this.selectedColumnSdata);
+    }
+
   }
 
   exportToExcel(reportName: string) {
