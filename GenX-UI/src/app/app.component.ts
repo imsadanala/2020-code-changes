@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
   templateUploadLabel = 'Browse Template XLS file';
   comparedColumnValues: string[] = [];
   templateUploadedFlag: boolean;
+  sourceUploadedFlag: boolean;
+  destinationUploadedFlag: boolean;
   compareColumnsmap = new Map<string, number>();
   optionSeletedValue = 'Select Test Type';
 
@@ -77,6 +79,7 @@ export class AppComponent implements OnInit {
       this.updatedSourceData.push(this.contentvalue);
     }
     this.sourceUploadLabel = this.fileName + ' uploaded successfully';
+    this.sourceUploadedFlag = true;
   }
 
   populateSourceXlsData(sourceXlsData) {
@@ -93,7 +96,7 @@ export class AppComponent implements OnInit {
       var workbook = XLSX.read(arr.join(''), { type: 'binary' });
       this.sourceXlsData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { raw: true, header: 1, defval: '' });
     };
-    this.sourceUploadLabel = this.fileName + ' browsed successfully';
+    this.sourceUploadLabel = this.fileName + ' browsed successfully';    
   }
 
   populateDestinatioXlsData(destinationXlsData) {
@@ -126,6 +129,7 @@ export class AppComponent implements OnInit {
       this.updatedDestinationData.push(this.contentvalue);
     }
     this.destinationUploadLabel = this.destFileName + ' uploaded successfully';
+    this.destinationUploadedFlag = true;
   }
 
   addColumnsCompareData() {
