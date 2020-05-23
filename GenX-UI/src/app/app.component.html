@@ -89,7 +89,8 @@
             <div class="form-group col-md-6 col-lg-3" style="margin-top: 60px;">
               <label>Select Test Type:</label>
               <select formControlName="selecttest" for="selecttest" class="form-control" id="selecttest">
-                <option *ngFor="let testType of compareColumnsmap.keys()" value="testType">{{testType}}</option>
+                <option *ngFor="let testType of compareColumnsmap.keys()" ([ngModel])="optionSeletedValue">{{testType}}
+                </option>
               </select>
             </div>
           </div>

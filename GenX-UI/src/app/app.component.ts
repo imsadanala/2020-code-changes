@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
   comparedColumnValues: string[] = [];
   templateUploadedFlag: boolean;
   compareColumnsmap = new Map<string, number>();
+  optionSeletedValue = 'Select Test Type';
 
   constructor(private uploadservice: UploadService) {
   }
@@ -137,8 +138,6 @@ export class AppComponent implements OnInit {
     let sourceValue = this.form.get('sourcedropdown').value;
     if (testType && destinationValue && sourceValue) {
       testType = this.compareColumnsmap.get(testType);
-      destinationValue = this.compareColumnsmap.get(destinationValue);
-      sourceValue = this.compareColumnsmap.get(sourceValue);
       this.dropdownValues.push(testType + ':' + sourceValue + ':' + destinationValue);
       this.selectedColumnSdata = {
         testingType: testType,
