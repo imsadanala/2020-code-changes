@@ -45,7 +45,10 @@ export class AppComponent implements OnInit {
   templateUploadedFlag: boolean;
   sourceUploadedFlag: boolean;
   destinationUploadedFlag: boolean;
-  compareColumnsmap = new Map<string, number>();
+  compareColumnsmap = new Map<string, number>(
+ 
+  );
+  compareColumsMapKeys: string[] = [];
   optionSeletedValue = 'Select Test Type';
 
   constructor(private uploadservice: UploadService) {
@@ -56,6 +59,8 @@ export class AppComponent implements OnInit {
     this.compareColumnsmap.set('Exists in Source', 1);
     this.compareColumnsmap.set('Exists in Destination', 2);
     this.compareColumnsmap.set('Variance', 3);
+    this.compareColumsMapKeys = Array.from(this.compareColumnsmap.keys());
+    console.log('compareColumsMapKeys', this.compareColumsMapKeys);
   }
 
 

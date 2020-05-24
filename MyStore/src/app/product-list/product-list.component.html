@@ -1,0 +1,14 @@
+<div style="text-align: center">
+    <h1>Product Information!!</h1>
+</div>
+<div style="text-align: start;">
+    <b>Name- </b> {{product.name}}<br>
+    <b>Description- </b>{{product.description}}<br>
+    <b>Price- </b>{{product.price}}<br>
+    Share the product information, click <button (click)="share()">Share</button>
+</div>
+<app-product-alerts [product]="product" (notify)="onNotify()"></app-product-alerts>
+<div style="text-align: center">
+    <h1>Product Details!!</h1>
+    <app-product-details [product]="product"></app-product-details>
+</div>
