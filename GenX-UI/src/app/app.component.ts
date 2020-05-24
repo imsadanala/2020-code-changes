@@ -45,9 +45,7 @@ export class AppComponent implements OnInit {
   templateUploadedFlag: boolean;
   sourceUploadedFlag: boolean;
   destinationUploadedFlag: boolean;
-  compareColumnsmap = new Map<string, number>(
- 
-  );
+  compareColumnsmap = new Map<string, number>();
   compareColumsMapKeys: string[] = [];
   optionSeletedValue = 'Select Test Type';
 
@@ -101,7 +99,7 @@ export class AppComponent implements OnInit {
       var workbook = XLSX.read(arr.join(''), { type: 'binary' });
       this.sourceXlsData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { raw: true, header: 1, defval: '' });
     };
-    this.sourceUploadLabel = this.fileName + ' browsed successfully';    
+    this.sourceUploadLabel = this.fileName + ' browsed successfully';
   }
 
   populateDestinatioXlsData(destinationXlsData) {
@@ -164,7 +162,7 @@ export class AppComponent implements OnInit {
         document.body.appendChild(element);
         element.setAttribute('style', 'display: none');
         element.href = link;
-        element.download = 'Sample';
+        element.download = reportName === 'report2' ? this.destFileName : this.fileName;
         element.click();
       });
   }
@@ -177,7 +175,7 @@ export class AppComponent implements OnInit {
         document.body.appendChild(element);
         element.setAttribute('style', 'display: none');
         element.href = link;
-        element.download = 'Sample';
+        element.download = 'Sample_Template';
         element.click();
       });
   }
