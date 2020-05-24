@@ -1,0 +1,10 @@
+<div class="container">
+  <app-users></app-users>
+</div>
+<div style="text-align:center" *ngIf="title.length && isLoaded> 0">
+  <h1>
+    Welcome to {{ title }} !!
+  </h1>
+</div>
+<h1 *ngIf="!isLoaded">Loading....</h1>
+<router-outlet></router-outlet>
