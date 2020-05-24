@@ -38,9 +38,9 @@ export class AppComponent implements OnInit {
   dropdownValues: string[] = [];
   selectedColumnSdata = { testingType: '', sourceColumn: '', destinationColumn: '' };
   selectedColumnSdataList: any = [];
-  sourceUploadLabel = 'Browse Source XLS file';
-  destinationUploadLabel = 'Browse Destination XLS file';
-  templateUploadLabel = 'Browse Template XLS file';
+  sourceUploadLabel = 'browse Source XLS file';
+  destinationUploadLabel = 'browse Destination XLS file';
+  templateUploadLabel = 'browse Template XLS file';
   comparedColumnValues: string[] = [];
   templateUploadedFlag: boolean;
   sourceUploadedFlag: boolean;
@@ -58,7 +58,6 @@ export class AppComponent implements OnInit {
     this.compareColumnsmap.set('Exists in Destination', 2);
     this.compareColumnsmap.set('Variance', 3);
     this.compareColumsMapKeys = Array.from(this.compareColumnsmap.keys());
-    console.log('compareColumsMapKeys', this.compareColumsMapKeys);
   }
 
 
@@ -141,8 +140,6 @@ export class AppComponent implements OnInit {
     let destinationValue = this.form.get('destinationdropdown').value;
     let sourceValue = this.form.get('sourcedropdown').value;
     if (testType && destinationValue && sourceValue) {
-      testType = this.compareColumnsmap.get(testType);
-      this.dropdownValues.push(testType + ':' + sourceValue + ':' + destinationValue);
       this.selectedColumnSdata = {
         testingType: testType,
         sourceColumn: sourceValue,
@@ -150,7 +147,7 @@ export class AppComponent implements OnInit {
       };
       this.selectedColumnSdataList.push(this.selectedColumnSdata);
     }
-
+    this.dropdownValues.push(this.compareColumnsmap.get(testType) + ':' + sourceValue + ':' + destinationValue);
   }
 
   exportToExcel(reportName: string) {
@@ -200,8 +197,11 @@ export class AppComponent implements OnInit {
   }
 
   bindCompareColumnData() {
+    let testingType: string;
     this.compareColumnXlsData.forEach(columnsData => {
-      this.comparedColumnValues.push(columnsData[0] + ':' + columnsData[1] + ':' + columnsData[2]);
+      testingType = columnsData[0];
+      this.comparedColumnValues.push(this.compareColumnsmap.get(columnsData[0]) + ':' + columnsData[1] +
+        ':' + columnsData[2]);
     });
     this.templateUploadLabel = this.columnsName + ' uploaded successfully';
     this.templateUploadedFlag = true;
