@@ -19,12 +19,13 @@ import org.springframework.stereotype.Service;
 import com.genex.dto.ExcelData;
 
 @Service
-public class GenXServiceImpl implements GenXService{
+public class GenXServiceImpl implements GenXService {
+	String reportName = null;
 
 	public byte[] getdiscrepancies(ExcelData excelData) {
-
 		List<String> srcData = excelData.getSourceData();
-		if ("template".equals(excelData.getReportName())) {
+		reportName = excelData.getReportName();
+		if ("template".equals(reportName)) {
 			return generateExcel(srcData.toArray(new String[0]), null);
 		}
 		List<String> destData = excelData.getDestinationData();
@@ -177,7 +178,6 @@ public class GenXServiceImpl implements GenXService{
 		XSSFFont headerFont = workbook.createFont();
 		headerFont.setBold(true);
 		headerFont.setFontHeightInPoints((short) 14);
-		headerFont.setColor(IndexedColors.RED.getIndex());
 		CellStyle headerCellStyle = workbook.createCellStyle();
 		headerCellStyle.setFont(headerFont);
 		Row headerRow = sheet.createRow(0);
@@ -187,6 +187,9 @@ public class GenXServiceImpl implements GenXService{
 			cell.setCellValue(hdrCol[i]);
 			cell.setCellStyle(headerCellStyle);
 		}
+		Cell cell = headerRow.createCell(hdrCol.length);
+		cell.setCellValue("report1".equals(reportName) ? "Exists In Destination" : "Exists In Source");
+		cell.setCellStyle(headerCellStyle);
 		int rowNum = 1;
 		if (excelData != null) {
 			for (String employee : excelData) {
