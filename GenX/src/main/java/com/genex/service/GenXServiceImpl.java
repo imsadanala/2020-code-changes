@@ -57,8 +57,12 @@ public class GenXServiceImpl implements GenXService {
 				compareSourceAndDestination(destHdr, sourceHdr, destinatinData, sourceData, map.get(testId), "2");
 				return generateExcel(destHdr, destinatinData);
 			} else {
-				compareSourceAndDestinationWithVarience(sourceHdr, destHdr, sourceData, destinatinData, map.get(testId),
+				compareSourceAndDestination(sourceHdr, destHdr, sourceData, destinatinData, map.get("1"), "1");
+				compareSourceAndDestinationWithVarience(sourceHdr, destHdr, sourceData, destinatinData, map.get("3"),
 						"1");
+				sourceData.stream().forEach(System.out::println);
+				destinatinData.stream().forEach(System.out::println);
+				return generateExcel(sourceHdr, sourceData);
 			}
 		}
 		return null;
@@ -120,6 +124,7 @@ public class GenXServiceImpl implements GenXService {
 				s = s + "," + inTarget + "," + String.valueOf(j);
 				sourceData.set(i, s);
 				i++;
+				j = 0;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,21 +143,23 @@ public class GenXServiceImpl implements GenXService {
 				String destData = destinatinData.get(destIndx - 1);
 				if (inTarget.equalsIgnoreCase("false")) {
 					String[] dest = destData.split(",");
-					col: for (String col : clomnToCompare) {
-						int srcIndex = 0;
-						int destIndex = 0;
-						if (ruleType.equalsIgnoreCase("1")) {
-							srcIndex = getIndexOfColomn(sourceHdr, col.substring(0, col.indexOf(":")));
-							destIndex = getIndexOfColomn(destinationHdr, col.substring(col.indexOf(":") + 1));
-						} else {
-							destIndex = getIndexOfColomn(destinationHdr, col.substring(0, col.indexOf(":")));
-							srcIndex = getIndexOfColomn(sourceHdr, col.substring(col.indexOf(":") + 1));
-						}
-						if (src[srcIndex].equalsIgnoreCase(dest[destIndex])) {
-							inTarget = "true";
-						} else {
-							inTarget = "false";
-							break col;
+					if(clomnToCompare != null) {
+						col: for (String col : clomnToCompare) {
+							int srcIndex = 0;
+							int destIndex = 0;
+							if (ruleType.equalsIgnoreCase("1")) {
+								srcIndex = getIndexOfColomn(sourceHdr, col.substring(0, col.indexOf(":")));
+								destIndex = getIndexOfColomn(destinationHdr, col.substring(col.indexOf(":") + 1));
+							} else {
+								destIndex = getIndexOfColomn(destinationHdr, col.substring(0, col.indexOf(":")));
+								srcIndex = getIndexOfColomn(sourceHdr, col.substring(col.indexOf(":") + 1));
+							}
+							if (src[srcIndex].equalsIgnoreCase(dest[destIndex])) {
+								inTarget = "true";
+							} else {
+								inTarget = "false";
+								break col;
+							}
 						}
 					}
 				}
@@ -189,15 +196,21 @@ public class GenXServiceImpl implements GenXService {
 		}
 		if (!"template".equalsIgnoreCase(reportName)) {
 			Cell cell = headerRow.createCell(hdrCol.length);
-			cell.setCellValue("report1".equals(reportName) ? "Exists In Destination" : "Exists In Source");
+			cell.setCellValue("report1".equalsIgnoreCase(reportName) ? "Exists In Destination" : "Exists In Source");
 			cell.setCellStyle(headerCellStyle);
 		}
 		int rowNum = 1;
 		if (excelData != null) {
-			for (String employee : excelData) {
+			for (String s : excelData) {
 				Row row = sheet.createRow(rowNum++);
-				String[] srcDataRow = employee.split(",");
-				for (int i = 0; i <= srcDataRow.length - 2; i++) {
+				String[] srcDataRow = s.split(",");
+				if ("report3".equalsIgnoreCase(reportName)
+						&& (srcDataRow[srcDataRow.length - 1].equalsIgnoreCase("true")
+								|| srcDataRow[srcDataRow.length - 1].equalsIgnoreCase("false"))) {
+					srcDataRow[srcDataRow.length - 2] = srcDataRow[srcDataRow.length - 1];
+				}
+				for (int i = 0; ((i <= srcDataRow.length - 2 && !"report3".equalsIgnoreCase(reportName))
+						|| (i <= srcDataRow.length - 2 && "report3".equalsIgnoreCase(reportName))); i++) {
 					row.createCell(i).setCellValue(srcDataRow[i]);
 				}
 			}
