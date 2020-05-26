@@ -7,7 +7,7 @@
   <form>
     <div class="form-group" (submit)="onSubmit($event)">
       <label>FirstName</label>
-      <input type="text" class="form-control" (keydown)="fireEvent($event)" name="firstName">
+      <input type="text" class="form-control" (keydown)="fireEvent($event)" name="firstName" autocomplete="off">
       <button class="btn btn-block mb-3">Add User</button>
     </div>
   </form>

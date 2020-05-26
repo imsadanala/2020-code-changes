@@ -71,8 +71,7 @@
                             [ngStyle]="destinationUploadedFlag ? {'color': 'green'} : ''">{{destinationUploadLabel}}</label>
                         </div>
                         <div class="input-group-append">
-                          <button class="btn btn-outline-secondary" type="Load"
-                            (click)="uploadDestinationXls()">Load</button>
+                          <button class="btn btn-primary" type="Load" (click)="uploadDestinationXls()">Load</button>
                         </div>
                       </div>
                     </form>
@@ -171,17 +170,18 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <button style="margin-top:-250px;" class="btn btn-success" (click)="exportToExcel('report2')">Generate
-              Report For Test Type 2
+            <button style="margin-top:-250px;" class="btn btn-success" (click)="exportToExcel('report2')"> Exists In
+              Destination
             </button>
           </div>
           <div class="col-sm-6">
             <button style="margin-top:-250px;" class="btn btn-success" (click)="exportToExcel('report3')">
-              Generate Report For Test Type 3</button>
+              Generate Variance Report</button>
           </div>
           <div class="col-sm-6">
-            <button style="margin-top:-550px; margin-left: 272px;" class="btn btn-success" (click)="exportToExcel('report1')">
-              Generate Report For Test Type 1</button>
+            <button style="margin-top:-550px; margin-left: 272px;" class="btn btn-success"
+              (click)="exportToExcel('report1')">
+              Exists In Source</button>
           </div>
         </div>
       </div>
