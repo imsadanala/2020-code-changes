@@ -10,9 +10,10 @@ import { Address } from 'src/app/dto/address-dto';
 export class UsersComponent implements OnInit {
 
   users: User[];
-  showExtended = false;
+  showExtended: boolean;
   loaded = false;
   enableAdd = true;
+  showUserForm: boolean;
 
   constructor() { }
 
@@ -31,6 +32,13 @@ export class UsersComponent implements OnInit {
   toggleUser(user: User) {
     user.hide = !user.hide;
   }
+  onSubmit(event) {
+    console.log('124556');
+    event.preventDefault();
+  }
 
-
+  fireEvent(event) {
+    console.log(event.type);
+    console.log(event.target.value);
+  }
 }
