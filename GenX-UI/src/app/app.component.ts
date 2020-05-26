@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
   compareColumnsmap = new Map<string, number>();
   compareColumsMapKeys: string[] = [];
   optionSeletedValue = 'Select Test Type';
+  enableReportsTab: boolean;
 
   constructor(private uploadservice: UploadService) {
   }
@@ -148,6 +149,10 @@ export class AppComponent implements OnInit {
       this.selectedColumnSdataList.push(this.selectedColumnSdata);
     }
     this.dropdownValues.push(this.compareColumnsmap.get(testType) + ':' + sourceValue + ':' + destinationValue);
+  }
+
+  isReportsTabEnabled(isEnabled) {
+    this.enableReportsTab = isEnabled;
   }
 
   exportToExcel(reportName: string) {
