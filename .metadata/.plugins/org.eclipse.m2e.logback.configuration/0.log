@@ -1,0 +1,29 @@
+2020-05-26 12:52:18,321 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2020-05-26 13:00:42,305 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2020-05-26 13:00:44,905 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.genex:genx:1.0 @ C:\Users\ssadanala.US\Documents\sadanala\Angular\ws\GenX\pom.xml.
+2020-05-26 13:00:48,200 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /GenX/src/main/java
+2020-05-26 13:00:48,202 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /GenX/src/main/resources
+2020-05-26 13:00:48,220 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /GenX/src/main/resources
+2020-05-26 13:00:48,241 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /GenX/src/test/java
+2020-05-26 13:00:50,577 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-05-26 13:00:50,584 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-05-26 13:00:50,602 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-26 13:00:50,607 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-05-26 13:00:50,607 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ssadanala.US\Documents\sadanala\Angular\ws\GenX\src\test\resources
+2020-05-26 13:00:51,537 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 9 sec
+2020-05-26 13:00:52,411 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-05-26 13:00:52,416 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-05-26 13:00:52,421 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-26 13:00:52,424 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-05-26 13:00:52,424 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ssadanala.US\Documents\sadanala\Angular\ws\GenX\src\test\resources
+2020-05-26 13:01:53,191 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2020-05-26 13:01:59,919 [Worker-22: Launching GenX] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\ssadanala.US\Documents\sadanala\Angular\ws\GenX
+2020-05-26 13:01:59,926 [Worker-22: Launching GenX] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2020-05-26 13:04:07,271 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-05-26 13:04:07,274 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-05-26 13:04:07,277 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-26 13:04:07,279 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-05-26 13:04:07,279 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ssadanala.US\Documents\sadanala\Angular\ws\GenX\src\test\resources
+2020-05-26 13:05:19,442 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2020-05-26 13:05:19,628 [Worker-27: Launching GenX] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\ssadanala.US\Documents\sadanala\Angular\ws\GenX
+2020-05-26 13:05:19,628 [Worker-27: Launching GenX] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
