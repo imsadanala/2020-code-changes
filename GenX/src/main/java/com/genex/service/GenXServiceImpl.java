@@ -25,7 +25,7 @@ public class GenXServiceImpl implements GenXService {
 	public byte[] getdiscrepancies(ExcelData excelData) {
 		List<String> srcData = excelData.getSourceData();
 		reportName = excelData.getReportName();
-		if ("template".equals(reportName)) {
+		if ("template".equalsIgnoreCase(reportName)) {
 			return generateExcel(srcData.toArray(new String[0]), null);
 		}
 		List<String> destData = excelData.getDestinationData();
@@ -50,10 +50,10 @@ public class GenXServiceImpl implements GenXService {
 			}
 		}
 		for (String testId : map.keySet()) {
-			if ("1".equals(testId) && "report1".equalsIgnoreCase(excelData.getReportName())) {
+			if ("1".equalsIgnoreCase(testId) && "report1".equalsIgnoreCase(excelData.getReportName())) {
 				compareSourceAndDestination(sourceHdr, destHdr, sourceData, destinatinData, map.get(testId), "1");
 				return generateExcel(sourceHdr, sourceData);
-			} else if ("2".equals(testId) && "report2".equalsIgnoreCase(excelData.getReportName())) {
+			} else if ("2".equalsIgnoreCase(testId) && "report2".equalsIgnoreCase(excelData.getReportName())) {
 				compareSourceAndDestination(destHdr, sourceHdr, destinatinData, sourceData, map.get(testId), "2");
 				return generateExcel(destHdr, destinatinData);
 			} else {
@@ -95,19 +95,19 @@ public class GenXServiceImpl implements GenXService {
 				String[] src = srcData.split(",");
 				String inTarget = "false";
 				for (String destData : destinatinData) {
-					if (inTarget.equals("false")) {
+					if (inTarget.equalsIgnoreCase("false")) {
 						String[] dest = destData.split(",");
 						col: for (String col : clomnToCompare) {
 							int srcIndex = 0;
 							int destIndex = 0;
-							if (ruleType.equals("1")) {
+							if (ruleType.equalsIgnoreCase("1")) {
 								srcIndex = getIndexOfColomn(sourceHdr, col.substring(0, col.indexOf(":")));
 								destIndex = getIndexOfColomn(DestinationHdr, col.substring(col.indexOf(":") + 1));
 							} else {
 								destIndex = getIndexOfColomn(DestinationHdr, col.substring(0, col.indexOf(":")));
 								srcIndex = getIndexOfColomn(sourceHdr, col.substring(col.indexOf(":") + 1));
 							}
-							if (src[srcIndex].equals(dest[destIndex])) {
+							if (src[srcIndex].equalsIgnoreCase(dest[destIndex])) {
 								inTarget = "true";
 							} else {
 								inTarget = "false";
@@ -132,23 +132,23 @@ public class GenXServiceImpl implements GenXService {
 		for (String s : sourceData) {
 			String srcData = s;
 			String[] src = srcData.split(",");
-			if (src[src.length - 2].equals("true")) {
+			if (src[src.length - 2].equalsIgnoreCase("true")) {
 				String inTarget = "false";
 				int destIndx = Integer.parseInt(src[src.length - 1]);
 				String destData = destinatinData.get(destIndx - 1);
-				if (inTarget.equals("false")) {
+				if (inTarget.equalsIgnoreCase("false")) {
 					String[] dest = destData.split(",");
 					col: for (String col : clomnToCompare) {
 						int srcIndex = 0;
 						int destIndex = 0;
-						if (ruleType.equals("1")) {
+						if (ruleType.equalsIgnoreCase("1")) {
 							srcIndex = getIndexOfColomn(sourceHdr, col.substring(0, col.indexOf(":")));
 							destIndex = getIndexOfColomn(destinationHdr, col.substring(col.indexOf(":") + 1));
 						} else {
 							destIndex = getIndexOfColomn(destinationHdr, col.substring(0, col.indexOf(":")));
 							srcIndex = getIndexOfColomn(sourceHdr, col.substring(col.indexOf(":") + 1));
 						}
-						if (src[srcIndex].equals(dest[destIndex])) {
+						if (src[srcIndex].equalsIgnoreCase(dest[destIndex])) {
 							inTarget = "true";
 						} else {
 							inTarget = "false";
@@ -165,7 +165,7 @@ public class GenXServiceImpl implements GenXService {
 
 	public static int getIndexOfColomn(String[] hdrArray, String col) {
 		for (int i = 0; i < hdrArray.length; i++) {
-			if (hdrArray[i].trim().equals(col)) {
+			if (hdrArray[i].trim().equalsIgnoreCase(col)) {
 				return i;
 			}
 		}
@@ -187,9 +187,11 @@ public class GenXServiceImpl implements GenXService {
 			cell.setCellValue(hdrCol[i]);
 			cell.setCellStyle(headerCellStyle);
 		}
-		Cell cell = headerRow.createCell(hdrCol.length);
-		cell.setCellValue("report1".equals(reportName) ? "Exists In Destination" : "Exists In Source");
-		cell.setCellStyle(headerCellStyle);
+		if (!"template".equalsIgnoreCase(reportName)) {
+			Cell cell = headerRow.createCell(hdrCol.length);
+			cell.setCellValue("report1".equals(reportName) ? "Exists In Destination" : "Exists In Source");
+			cell.setCellStyle(headerCellStyle);
+		}
 		int rowNum = 1;
 		if (excelData != null) {
 			for (String employee : excelData) {
