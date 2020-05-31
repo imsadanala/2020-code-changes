@@ -1,0 +1,3 @@
+<div *ngIf="product.isOutStock">
+    Product is out of stock, click <button (click)="notifyEmitter.emit()">Notify</button>
+</div>

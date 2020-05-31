@@ -1,0 +1,40 @@
+<h4 *ngIf="!loaded">Loading Users...</h4>
+
+<button class="btn btn-dark mb-3" (click)="showUserForm = !showUserForm">Create New
+  User</button>
+<div *ngIf="showUserForm" class="card card-body mb-2">
+  <!-- <h4>Add User</h4> -->
+  <form>
+    <div class="form-group">
+      <label>FirstName</label>
+      <input type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName" autocomplete="autoComplete">
+      <label>LastName</label>
+      <input type="text" class="form-control" [(ngModel)]="user.lastName" name="lastName" autocomplete="autoComplete">
+      <label>Age</label>
+      <input type="text" class="form-control" [(ngModel)]="user.age" name="age" autocomplete="autoComplete">
+      <label>Street Address</label>
+      <input type="text" class="form-control" [(ngModel)]="user.address.street" name="street" autocomplete="autoComplete">
+      <label>City</label>
+      <input type="text" class="form-control" [(ngModel)]="user.address.city" name="street" autocomplete="autoComplete">
+      <label>State</label>
+      <input type="text" class="form-control" [(ngModel)]="user.address.state" name="street" autocomplete="autoComplete">
+      <button class="btn btn-dark mb-3" [disabled]="user.firstName == ''"
+        (click)="addUser()">Add User</button>
+    </div>
+  </form>
+</div>
+<ul *ngIf="loaded && users?.length > 0">
+  <li class="card card-body mb-2" *ngFor="let user of users" [class.bg-light]="user.isActive">
+    <h3>{{ user.firstName }} {{ user.lastName }} <small><button class="btn-dark btn-sm"
+          (click)="user.hide = !user.hide"><i [ngClass]="user.hide ? 'fa fa-plus' : 'fa fa-minus'"></i></button></small>
+    </h3>
+    <ul class="list-group" *ngIf="!user.hide && showExtended && user.age && user.address">
+      <li class="list-group-item">Age: {{ user.age }}</li>
+      <li class="list-group-item">Address: {{ user.address.street }} {{ user.address.city }}, {{ user.address.state }}
+      </li>
+      <li class="list-group-item">Joined: {{ user.registered | date }}</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 *ngIf="users?.length == 0">No Users Found</h4>
