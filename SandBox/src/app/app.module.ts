@@ -10,6 +10,7 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { userService } from './services/user.service';
 import { PostsComponent } from './component/posts/posts.component';
 import { PostService } from './services/post.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PostService } from './services/post.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [userService, PostService],
   bootstrap: [AppComponent]
