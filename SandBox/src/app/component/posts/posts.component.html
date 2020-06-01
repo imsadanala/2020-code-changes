@@ -1,1 +1,6 @@
-<p>posts works!</p>
+<app-post-form (newPost)="newPost($event)"></app-post-form>
+<ul class="card" *ngFor="let post of posts">
+  <li class="card-body">Id: <b>{{post.id}}</b></li>
+  <li class="card-body">Title: <b>{{post.title}}</b></li>
+  <li class="card-body">Body: <b>{{post.body}}</b></li>
+</ul>

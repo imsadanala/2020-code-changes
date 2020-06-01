@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Post } from '../dto/post-dto';
 
@@ -8,11 +8,19 @@ import { Post } from '../dto/post-dto';
 })
 export class PostService {
 
-  getPostsUrl = 'https://jsonplaceholder.typicode.com/posts';
+  httpOption =
+    { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+
+  postsUrl = 'https://jsonplaceholder.typicode.com/posts';
 
   constructor(private httpClient: HttpClient) { }
 
   getPosts(): Observable<Post[]> {
-    return this.httpClient.get<Post[]>(this.getPostsUrl);
+    return this.httpClient.get<Post[]>(this.postsUrl);
   }
+
+  savePost(post: Post): Observable<Post> {
+    return this.httpClient.post<Post>(this.postsUrl, post, this.httpOption);
+  }
+
 }
