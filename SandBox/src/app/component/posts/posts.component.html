@@ -1,6 +1,8 @@
-<app-post-form (newPost)="newPost($event)"></app-post-form>
+<app-post-form (newPost)="newPost($event)" [currentPost]="currentPost"></app-post-form>
 <ul class="card" *ngFor="let post of posts">
   <li class="card-body">Id: <b>{{post.id}}</b></li>
   <li class="card-body">Title: <b>{{post.title}}</b></li>
   <li class="card-body">Body: <b>{{post.body}}</b></li>
+  <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
+  <button class="btn btn-light" (click)="editPost(post)"><i class="fa fa-pencil"></i></button>
 </ul>
